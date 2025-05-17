@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PDF Tools Hub | All-in-one PDF Solution</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --primary-color: #ff5050;
+                --primary-light: #ff7070;
+                --primary-dark: #e04646;
+                --secondary-color: #4e73df;
+                --secondary-light: #6d8ce8;
+                --secondary-dark: #3a62d0;
+                --success-color: #3cbc81;
+                --warning-color: #ffcc00;
+                --danger-color: #ff5050;
+                --info-color: #0dcaf0;
+                --dark-color: #252525;
+            }
+    
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: #f9fafb;
+            }
+    
+            .tool-card {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            .tool-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            }
+    
+            .btn-primary {
+                background-color: var(--primary-color);
+                color: white;
+            }
+            
+            .btn-primary:hover {
+                background-color: var(--primary-dark);
+            }
+    
+            .btn-secondary {
+                background-color: var(--secondary-color);
+                color: white;
+            }
+            
+            .btn-secondary:hover {
+                background-color: var(--secondary-dark);
+            }
+    
+            .btn-outline {
+                border: 2px solid var(--primary-color);
+                color: var(--primary-color);
+            }
+            
+            .btn-outline:hover {
+                background-color: var(--primary-color);
+                color: white;
+            }
+    
+            .tool-icon {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 8px;
+                margin-bottom: 16px;
+            }
+    
+            .bg-merge { background-color: #ff5050; }
+            .bg-split { background-color: #ff7e42; }
+            .bg-compress { background-color: #4bc467; }
+            .bg-word { background-color: #4e73df; }
+            .bg-powerpoint { background-color: #ff914d; }
+            .bg-excel { background-color: #4bc467; }
+            .bg-jpg { background-color: #ffcc00; }
+            .bg-html { background-color: #e67e22; }
+            .bg-sign { background-color: #0dcaf0; }
+            .bg-watermark { background-color: #9b59b6; }
+            .bg-protect { background-color: #3498db; }
+            .bg-organize { background-color: #ff5050; }
+            .bg-rotate { background-color: #9b59b6; }
+            .bg-extract { background-color: #3cbc81; }
+            .bg-compare { background-color: #3a62d0; }
+            .bg-ocr { background-color: #8e44ad; }
+    
+            /* Premium badge */
+            .premium-badge {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                background-color: var(--warning-color);
+                color: var(--dark-color);
+                font-size: 10px;
+                font-weight: bold;
+                padding: 4px 8px;
+                border-radius: 12px;
+            }
+    
+            /* Custom scrollbar for webkit browsers */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background: #c1c1c1;
+                border-radius: 4px;
+            }
+            
+            ::-webkit-scrollbar-thumb:hover {
+                background: #a1a1a1;
+            }
+    
+            /* Hero gradient background */
+            .hero-gradient {
+                background: linear-gradient(135deg, #ff5050 0%, #ff914d 100%);
+            }
+    
+            /* Footer gradient background */
+            .footer-gradient {
+                background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            }
+    
+            /* Testimonial cards */
+            .testimonial-card {
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            .testimonial-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            }
+    
+            /* Mobile menu */
+            .mobile-menu-hidden {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .mobile-menu-visible {
+                transform: translateX(0);
+                transition: transform 0.3s ease;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="flex justify-between items-center">
+                    <!-- Logo -->
+                    <div class="flex items-center">
+                        <a href="#" class="flex items-center">
+                            <i class="fas fa-file-pdf text-2xl text-red-500 mr-2"></i>
+                            <span class="font-bold text-xl text-gray-800">PDF Tools Hub</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#tools" class="text-gray-600 hover:text-red-500 transition-colors font-medium">Tools</a>
+                        <a href="#premium" class="text-gray-600 hover:text-red-500 transition-colors font-medium">Premium</a>
+                        <a href="#desktop" class="text-gray-600 hover:text-red-500 transition-colors font-medium">Download</a>
+                        <a href="#faq" class="text-gray-600 hover:text-red-500 transition-colors font-medium">Help</a>
+                        <a href="#contact" class="text-gray-600 hover:text-red-500 transition-colors font-medium">Contact</a>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="hidden md:inline-block py-2 px-6 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-full font-medium transition-colors">Sign In</a>
+                        <a href="#premium" class="py-2 px-6 btn-primary rounded-full font-medium transition-colors">Try Premium</a>
+                        
+                        <!-- Mobile menu button -->
+                        <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                            <i class="fas fa-bars text-gray-700 text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Navigation Menu (hidden by default) -->
+                <div id="mobile-menu" class="mobile-menu-hidden absolute top-full left-0 w-full bg-white shadow-md md:hidden">
+                    <div class="container mx-auto px-4 py-3 space-y-3">
+                        <a href="#tools" class="block py-2 text-gray-600 hover:text-red-500 transition-colors font-medium">Tools</a>
+                        <a href="#premium" class="block py-2 text-gray-600 hover:text-red-500 transition-colors font-medium">Premium</a>
+                        <a href="#desktop" class="block py-2 text-gray-600 hover:text-red-500 transition-colors font-medium">Download</a>
+                        <a href="#faq" class="block py-2 text-gray-600 hover:text-red-500 transition-colors font-medium">Help</a>
+                        <a href="#contact" class="block py-2 text-gray-600 hover:text-red-500 transition-colors font-medium">Contact</a>
+                        <a href="#" class="block py-2 text-gray-600 hover:text-red-500 transition-colors font-medium">Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    
+        <!-- Hero Section -->
+        <section class="hero-gradient py-16 md:py-24">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <!-- Hero Text -->
+                    <div class="text-white md:w-1/2 mb-10 md:mb-0">
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Every tool you need to work with PDFs in one place</h1>
+                        <p class="text-lg opacity-90 mb-8">Every tool you need to use PDFs, at your fingertips. All tools PDF need easy to use. Merge, split, compress, convert, rotate, unlock and watermark PDFs with just a few clicks.</p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="#tools" class="py-3 px-8 bg-white text-red-500 font-medium rounded-full hover:bg-gray-100 transition-colors text-center">Explore Tools</a>
+                            <a href="#premium" class="py-3 px-8 bg-red-600 text-white font-medium rounded-full hover:bg-red-700 transition-colors text-center">Get Premium</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Hero Image -->
+                    <div class="md:w-1/2 flex justify-center">
+                        <div class="relative">
+                            <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md">
+                                <div class="flex items-center mb-6">
+                                    <i class="fas fa-file-pdf text-red-500 text-xl mr-2"></i>
+                                    <h3 class="font-medium text-gray-800">Process your PDF files with ease</h3>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                        <div class="h-10 w-10 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                                            <i class="fas fa-file-upload text-red-500"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-800">Upload your files</p>
+                                            <p class="text-xs text-gray-500">Select files from your device</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                        <div class="h-10 w-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                            <i class="fas fa-cog text-blue-500"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-800">Process instantly</p>
+                                            <p class="text-xs text-gray-500">We'll convert it for you</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                        <div class="h-10 w-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                            <i class="fas fa-download text-green-500"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-800">Download the result</p>
+                                            <p class="text-xs text-gray-500">Get your file instantly</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- PDF Tools Section -->
+        <section id="tools" class="py-16 bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">All the PDF tools you need</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Convert, compress, merge - we have all the tools you need to work with PDF files. Every tool is designed to be easy to use.</p>
+                </div>
+    
+                <!-- PDF Tools Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Merge PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-merge text-white">
+                            <i class="fas fa-object-group"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Merge PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Combine multiple PDFs into one file. Add as many files as you need to join.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Split PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-split text-white">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Split PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Separate one PDF into multiple files, extract specific pages.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Compress PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-compress text-white">
+                            <i class="fas fa-compress-alt"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Compress PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Reduce file size while optimizing for maximal PDF quality.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- PDF to Word -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-word text-white">
+                            <i class="fas fa-file-word"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">PDF to Word</h3>
+                        <p class="text-gray-600 text-sm mb-4">Convert your PDF to Word documents. Preserve fonts and layout.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- PDF to PowerPoint -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-powerpoint text-white">
+                            <i class="fas fa-file-powerpoint"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">PDF to PowerPoint</h3>
+                        <p class="text-gray-600 text-sm mb-4">Turn your PDF into editable PowerPoint presentations.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- PDF to Excel -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-excel text-white">
+                            <i class="fas fa-file-excel"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">PDF to Excel</h3>
+                        <p class="text-gray-600 text-sm mb-4">Extract tables from your PDF to Excel spreadsheets.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Word to PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-word text-white">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Word to PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Convert Word documents to PDF. Preserve quality and formatting.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- PowerPoint to PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-powerpoint text-white">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">PowerPoint to PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Convert PowerPoint presentations to PDF files.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Excel to PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-excel text-white">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Excel to PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Convert Excel spreadsheets to PDF files.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- JPG to PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-jpg text-white">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">JPG to PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Convert JPG images to PDF files. Combine multiple images.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- HTML to PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-html text-white">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">HTML to PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Convert web pages to PDF documents. Save HTML as PDF.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Sign PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-sign text-white">
+                            <i class="fas fa-signature"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Sign PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Add your signature to PDF documents. Draw or upload your signature.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Watermark PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-watermark text-white">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Watermark</h3>
+                        <p class="text-gray-600 text-sm mb-4">Add watermark to your PDF files. Text or image watermarks.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Protect PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-protect text-white">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Protect PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Add password protection to your sensitive PDF documents.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Unlock PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-protect text-white">
+                            <i class="fas fa-unlock"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Unlock PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Remove password protection from your PDF files instantly.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Organize PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-organize text-white">
+                            <i class="fas fa-sort"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Organize PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Sort, add, delete, and rotate PDF pages with ease.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Rotate PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-rotate text-white">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Rotate PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Rotate PDF pages for correct viewing. Adjust orientation.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Extract Pages -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-extract text-white">
+                            <i class="fas fa-file-export"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Extract Pages</h3>
+                        <p class="text-gray-600 text-sm mb-4">Extract specific pages from your PDF document.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Compare PDFs -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <div class="tool-icon bg-compare text-white">
+                            <i class="fas fa-clone"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Compare PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Find differences between two PDF documents quickly.</p>
+                        <a href="#" class="text-red-500 font-medium flex items-center">
+                            Use Tool <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- OCR PDF -->
+                    <div class="tool-card bg-white rounded-xl border border-gray-200 p-6 relative overflow-hidden">
+                        <span class="premium-badge">PREMIUM</span>
+                        <div class="tool-icon bg-ocr text-white">
+                            <i class="fas fa-font"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">OCR PDF</h3>
+                        <p class="text-gray-600 text-sm mb-4">Convert scanned PDFs to searchable text documents.</p>
+                        <a href="#premium" class="text-red-500 font-medium flex items-center">
+                            Premium <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <h3 class="text-xl font-semibold mb-4">Looking for another solution?</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                        <a href="#desktop" class="tool-card bg-white rounded-xl border border-gray-200 p-6 text-center hover:border-red-500">
+                            <h4 class="font-bold mb-3">iLovePDF Desktop</h4>
+                            <p class="text-gray-600 text-sm">Work with your PDFs offline on your computer</p>
+                        </a>
+                        <a href="#desktop" class="tool-card bg-white rounded-xl border border-gray-200 p-6 text-center hover:border-red-500">
+                            <h4 class="font-bold mb-3">iLovePDF Mobile</h4>
+                            <p class="text-gray-600 text-sm">Work with your PDFs on your mobile device</p>
+                        </a>
+                        <a href="#" class="tool-card bg-white rounded-xl border border-gray-200 p-6 text-center hover:border-red-500">
+                            <h4 class="font-bold mb-3">iLoveIMG</h4>
+                            <p class="text-gray-600 text-sm">All tools you need to work with images</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Trust Section -->
+        <section class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold mb-6">The PDF software trusted by millions of users</h2>
+                    <p class="text-gray-600 mb-8 max-w-3xl mx-auto">iLovePDF is your number one web app for editing PDF with ease, offering a complete set of free PDF tools to work with digital documents. We work with all major file formats efficiently with clear results and digital documentation within seconds your task can be done.</p>
+                    <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-2"></i>
+                            <span class="font-semibold">4.8/5 rating</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-shield-alt text-green-500 mr-2"></i>
+                            <span class="font-semibold">Secure processing</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-users text-blue-500 mr-2"></i>
+                            <span class="font-semibold">30M+ monthly users</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span class="font-semibold">PDF/A compliant</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Premium Section -->
+        <section id="premium" class="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center mb-12">
+                    <span class="inline-block py-1 px-4 rounded-full bg-red-500 text-sm font-semibold mb-4">PREMIUM</span>
+                    <h2 class="text-3xl font-bold mb-4">Get more with Premium</h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto">Unlock advanced features and take your PDF productivity to the next level.</p>
+                </div>
+    
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Premium Feature 1 -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 transform transition-all hover:scale-105">
+                        <div class="h-14 w-14 rounded-lg bg-red-500 flex items-center justify-center mb-6">
+                            <i class="fas fa-bolt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Batch Processing</h3>
+                        <p class="text-gray-300">Process multiple files at once and save hours of your valuable time.</p>
+                    </div>
+                    
+                    <!-- Premium Feature 2 -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 transform transition-all hover:scale-105">
+                        <div class="h-14 w-14 rounded-lg bg-red-500 flex items-center justify-center mb-6">
+                            <i class="fas fa-font text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">OCR Technology</h3>
+                        <p class="text-gray-300">Convert scanned documents to searchable and editable PDF files.</p>
+                    </div>
+                    
+                    <!-- Premium Feature 3 -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 transform transition-all hover:scale-105">
+                        <div class="h-14 w-14 rounded-lg bg-red-500 flex items-center justify-center mb-6">
+                            <i class="fas fa-file-signature text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Digital Signatures</h3>
+                        <p class="text-gray-300">Add legally binding electronic signatures to your PDF documents.</p>
+                    </div>
+                </div>
+    
+                <div class="mt-12 text-center">
+                    <a href="#" class="py-3 px-8 bg-red-500 hover:bg-red-600 transition-colors rounded-full font-medium inline-block">Try Premium Free for 7 Days</a>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Desktop & Mobile Apps -->
+        <section id="desktop" class="py-16 bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <!-- Desktop App -->
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold mb-4">Work offline with our Desktop app</h2>
+                        <p class="text-gray-600 mb-6">Download iLovePDF Desktop and work with your PDF files even when you're offline. Faster processing and more features.</p>
+                        <ul class="mb-8 space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span class="text-gray-700">Offline PDF processing</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span class="text-gray-700">Faster conversions</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span class="text-gray-700">Enhanced security</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span class="text-gray-700">No file size limits</span>
+                            </li>
+                        </ul>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#" class="flex items-center py-3 px-6 bg-gray-900 text-white rounded-lg transition-colors hover:bg-gray-800">
+                                <i class="fab fa-windows text-xl mr-3"></i>
+                                <span>Windows</span>
+                            </a>
+                            <a href="#" class="flex items-center py-3 px-6 bg-gray-900 text-white rounded-lg transition-colors hover:bg-gray-800">
+                                <i class="fab fa-apple text-xl mr-3"></i>
+                                <span>macOS</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile App -->
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold mb-4">PDF tools in your pocket</h2>
+                        <p class="text-gray-600 mb-6">Get the iLovePDF mobile app and work with your PDF files from your smartphone or tablet, anytime and anywhere.</p>
+                        <ul class="mb-8 space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span class="text-gray-700">Scan documents with your camera</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span class="text-gray-700">Sign documents on the go</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span class="text-gray-700">Fill and edit PDF forms</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span class="text-gray-700">Cloud synchronization</span>
+                            </li>
+                        </ul>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#" class="flex items-center py-3 px-6 bg-gray-900 text-white rounded-lg transition-colors hover:bg-gray-800">
+                                <i class="fab fa-google-play text-xl mr-3"></i>
+                                <span>Google Play</span>
+                            </a>
+                            <a href="#" class="flex items-center py-3 px-6 bg-gray-900 text-white rounded-lg transition-colors hover:bg-gray-800">
+                                <i class="fab fa-app-store-ios text-xl mr-3"></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Testimonials -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">What our users say</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Join millions of satisfied users who trust our PDF tools every day.</p>
+                </div>
+    
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card bg-white p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="h-12 w-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Sarah Johnson</h4>
+                                <p class="text-sm text-gray-500">Marketing Manager</p>
+                            </div>
+                        </div>
+                        <div class="mb-4 text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 italic">"This is the best PDF tool I've ever used. The batch processing feature saves me hours every week. Well worth the premium subscription!"</p>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card bg-white p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="h-12 w-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Michael Rodriguez</h4>
+                                <p class="text-sm text-gray-500">Independent Contractor</p>
+                            </div>
+                        </div>
+                        <div class="mb-4 text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="text-gray-700 italic">"I use the free tools almost daily for my contracting work. The PDF to Word conversion maintains formatting perfectly. A lifesaver!"</p>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card bg-white p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="h-12 w-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Jennifer Lee</h4>
+                                <p class="text-sm text-gray-500">University Professor</p>
+                            </div>
+                        </div>
+                        <div class="mb-4 text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 italic">"As an educator, I need to work with lots of PDFs. This tool makes merging student submissions and adding comments so much easier. The mobile app is fantastic too!"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Find answers to common questions about our PDF tools.</p>
+                </div>
+    
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <!-- FAQ Item 1 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <div class="p-4 bg-gray-50 font-medium flex justify-between items-center cursor-pointer">
+                            <h3>Are my PDF files secure?</h3>
+                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        </div>
+                        <div class="p-4 border-t border-gray-200">
+                            <p class="text-gray-600">Yes, your files are 100% secure. All files are processed on your device and are not uploaded to our servers unless you're using cloud storage features. We automatically delete all files after processing is complete.</p>
+                        </div>
+                    </div>
+    
+                    <!-- FAQ Item 2 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <div class="p-4 bg-gray-50 font-medium flex justify-between items-center cursor-pointer">
+                            <h3>Is there a file size limit?</h3>
+                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        </div>
+                        <div class="p-4 border-t border-gray-200">
+                            <p class="text-gray-600">Free users can process files up to 100MB. Premium users enjoy higher limits up to 500MB per file. The desktop application has no file size restrictions.</p>
+                        </div>
+                    </div>
+    
+                    <!-- FAQ Item 3 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <div class="p-4 bg-gray-50 font-medium flex justify-between items-center cursor-pointer">
+                            <h3>Can I use these tools on my mobile device?</h3>
+                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        </div>
+                        <div class="p-4 border-t border-gray-200">
+                            <p class="text-gray-600">Yes, all our tools are fully optimized for mobile use. You can also download our dedicated mobile app for iOS and Android for an even better experience on smartphones and tablets.</p>
+                        </div>
+                    </div>
+    
+                    <!-- FAQ Item 4 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <div class="p-4 bg-gray-50 font-medium flex justify-between items-center cursor-pointer">
+                            <h3>What does the Premium subscription include?</h3>
+                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        </div>
+                        <div class="p-4 border-t border-gray-200">
+                            <p class="text-gray-600">Premium includes batch processing, OCR technology for text recognition in scanned documents, digital signatures, removal of watermarks, higher file size limits, priority support, and more.</p>
+                        </div>
+                    </div>
+    
+                    <!-- FAQ Item 5 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <div class="p-4 bg-gray-50 font-medium flex justify-between items-center cursor-pointer">
+                            <h3>Can I cancel my Premium subscription anytime?</h3>
+                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        </div>
+                        <div class="p-4 border-t border-gray-200">
+                            <p class="text-gray-600">Yes, you can cancel your Premium subscription at any time. You'll continue to have access to Premium features until the end of your current billing period.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="text-center mt-12">
+                    <p class="text-gray-600 mb-4">Still have questions? We're here to help.</p>
+                    <a href="#contact" class="py-3 px-8 btn-outline rounded-full font-medium inline-block transition-colors">Contact Support</a>
+                </div>
+            </div>
+        </section>
+    
+        <!-- CTA Section -->
+        <section class="py-16 bg-gradient-to-br from-red-500 to-red-600 text-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-6">Ready to simplify your PDF workflow?</h2>
+                    <p class="text-lg mb-8 opacity-90">Join millions of users who trust our PDF tools. Start using our professional tools for free today.</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="#tools" class="py-3 px-8 bg-white text-red-500 font-medium rounded-full hover:bg-gray-100 transition-colors">Get Started Free</a>
+                        <a href="#premium" class="py-3 px-8 border-2 border-white text-white font-medium rounded-full hover:bg-white/10 transition-colors">Try Premium</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Footer -->
+        <footer id="contact" class="footer-gradient text-white py-12">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                    <!-- Company Info -->
+                    <div>
+                        <div class="flex items-center mb-6">
+                            <i class="fas fa-file-pdf text-2xl text-red-500 mr-2"></i>
+                            <span class="font-bold text-xl">PDF Tools Hub</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">All the tools you need to work with PDFs in one place.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Products -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-6">Products</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Desktop App</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Mobile App</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Web Tools</a></li>
+                            <li><a href="#premium" class="text-gray-300 hover:text-white transition-colors">Premium Features</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">API Access</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Resources -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-6">Resources</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Help Center</a></li>
+                            <li><a href="#faq" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Tutorials</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Developer API</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Company -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-6">Company</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Careers</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-700 pt-8 mt-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <p class="text-gray-400 mb-4 md:mb-0">© 2023 PDF Tools Hub. All rights reserved.</p>
+                        <div class="flex space-x-6">
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy</a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms</a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">Cookies</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <script>
+            // Mobile menu toggle
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                
+                mobileMenuButton.addEventListener('click', function() {
+                    if (mobileMenu.classList.contains('mobile-menu-hidden')) {
+                        mobileMenu.classList.remove('mobile-menu-hidden');
+                        mobileMenu.classList.add('mobile-menu-visible');
+                    } else {
+                        mobileMenu.classList.add('mobile-menu-hidden');
+                        mobileMenu.classList.remove('mobile-menu-visible');
+                    }
+                });
+    
+                // Close mobile menu when clicking menu items
+                const mobileMenuItems = mobileMenu.querySelectorAll('a');
+                mobileMenuItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        mobileMenu.classList.add('mobile-menu-hidden');
+                        mobileMenu.classList.remove('mobile-menu-visible');
+                    });
+                });
+    
+                // FAQ accordion functionality
+                const faqItems = document.querySelectorAll('.border-gray-200.rounded-lg');
+                faqItems.forEach(item => {
+                    const header = item.querySelector('.p-4.bg-gray-50');
+                    const content = item.querySelector('.p-4.border-t');
+                    const icon = header.querySelector('.fas');
+                    
+                    // Initially hide the content
+                    content.style.display = 'none';
+                    
+                    header.addEventListener('click', function() {
+                        if (content.style.display === 'none') {
+                            content.style.display = 'block';
+                            icon.classList.remove('fa-chevron-down');
+                            icon.classList.add('fa-chevron-up');
+                        } else {
+                            content.style.display = 'none';
+                            icon.classList.remove('fa-chevron-up');
+                            icon.classList.add('fa-chevron-down');
+                        }
+                    });
+                });
+    
+                // Smooth scrolling for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        if (targetId === '#') return;
+                        
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80, // Adjust for fixed header
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+    </html>
